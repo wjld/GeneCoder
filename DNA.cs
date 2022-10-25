@@ -52,4 +52,18 @@ class DNA
     {
         return this.strand;
     }
+
+    public void Decode()
+    {
+        StringBuilder decoded = new StringBuilder();
+        foreach(byte part in Convert.FromBase64String(strand))
+        {
+            string bitString = Convert.ToString(part,2).PadLeft(8,'0');
+            for(int i = 0; i <= bitString.Length - 2; i += 2)
+            {
+                decoded.Append(bitsToChar[bitString.Substring(i,2)]);
+            }
+        }
+        this.strand = decoded.ToString();
+    }
 }
