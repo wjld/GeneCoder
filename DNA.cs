@@ -83,4 +83,21 @@ class DNA
         }
         this.strand = Convert.ToBase64String(arr);
     }
+
+    public bool CheckGene(string gene)
+    {
+        if(!IsMainStrand())
+        {
+            MainStrand();
+        }
+        int minimum = (int)Math.Ceiling(gene.Length * 0.5);
+        for(int i = 0; i <= gene.Length - minimum; i++)
+        {
+            if(strand.Contains(gene.Substring(i,minimum)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
