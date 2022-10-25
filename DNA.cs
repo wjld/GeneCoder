@@ -25,4 +25,14 @@ class DNA
         {'G','C'},
         {'T','A'},
     };
+
+    public DNA(string strand)
+    {
+        this.strand = strand;
+    }
+
+    public string GetStrand()
+    {
+        return this.strand;
+    }
 }
