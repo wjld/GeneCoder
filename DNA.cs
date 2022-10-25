@@ -66,4 +66,21 @@ class DNA
         }
         this.strand = decoded.ToString();
     }
+
+    public void Encode()
+    {
+        StringBuilder encoded = new StringBuilder();
+        foreach(char c in strand)
+        {
+            encoded.Append(charToBits[c]);
+        }
+        int byteN = (int)Math.Ceiling(encoded.Length / 8f);
+        string bitstring = encoded.ToString();
+        byte[] arr = new byte[byteN];
+        for(int i = 0; i < byteN; i++)
+        {
+            arr[i] = Convert.ToByte(bitstring.Substring(8 * i, 8), 2);
+        }
+        this.strand = Convert.ToBase64String(arr);
+    }
 }
