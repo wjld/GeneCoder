@@ -1,3 +1,5 @@
+using System.Text;
+
 class DNA
 {
     string strand;
@@ -25,6 +27,21 @@ class DNA
         {'G','C'},
         {'T','A'},
     };
+
+    bool IsMainStrand()
+    {
+        return strand.StartsWith("CAT");
+    }
+
+    void MainStrand()
+    {
+        StringBuilder generated = new StringBuilder();
+        foreach(char c in strand)
+        {
+            generated.Append(complement[c]);
+        }
+        this.strand = generated.ToString();
+    }
 
     public DNA(string strand)
     {
