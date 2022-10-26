@@ -6,6 +6,13 @@ class main
     static User user = new User();
     static Display display = new Display();
 
+    static async Task CreateUserAsync(NewUser user)
+    {
+        HttpResponseMessage response = await client.PostAsJsonAsync(
+            "api/users/create", user);
+        response.EnsureSuccessStatusCode();
+    }
+
     static async Task<string> RequestTokenAsync(User user)
     {
         string token = null;
@@ -39,6 +46,16 @@ class main
             {
                 user.username = display.GetUsername();
                 user.password = display.GetPassword();
+            }
+            else if(option == "2")
+            {
+                NewUser newUser = new NewUser();
+                newUser.username = display.GetUsername();
+                newUser.email = display.GetEmail();
+                newUser.password = display.GetPassword();
+                await CreateUserAsync(newUser);
+                user.username = newUser.username;
+                user.password = newUser.password;
             }
             
             string token = await RequestTokenAsync(user);
