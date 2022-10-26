@@ -54,4 +54,19 @@ class Display
         }
         return email;
     }
+
+    public void LoginError()
+    {
+        Console.WriteLine("Login failed. Ensure your credentials are right.\n");
+        Console.WriteLine("Enter anything to continue:");
+        Console.ReadLine();
+    }
+
+    public void ConfirmLogin(string token)
+    {
+        Console.Clear();
+        Console.WriteLine($"Your authentication token is {token}.\n");
+        Console.WriteLine("Enter anything to continue:");
+        Console.ReadLine();
+    }
 }
