@@ -91,6 +91,11 @@ class main
                 if(option == "1")
                 {
                     var jobDict = await GetJobAsync();
+                    if(jobDict is not null)
+                    {
+                        Job job = new Job(jobDict);
+                        display.JobDetails(job);
+                    }
                 }
             }
             option = display.WelcomeScreen();

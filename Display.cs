@@ -84,4 +84,12 @@ class Display
         }
         return option;
     }
+
+    public void JobDetails(Job job)
+    {
+        Console.Clear();
+        Console.WriteLine($"Type:{job.type}\tId:" +
+            $"{job.id}");
+        Console.WriteLine("Solving...\n");
+    }
 }
