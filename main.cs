@@ -27,6 +27,20 @@ class main
         return token;
     }
 
+    static async Task<Dictionary<string,string>> GetJobAsync()
+    {
+        Dictionary<string,string> jobDict = null;
+        HttpResponseMessage response = await client.GetAsync(
+            "api/dna/jobs");
+        var fields = await response.Content.
+            ReadAsAsync<Dictionary<string,dynamic>>();
+        if (fields["code"] == "Success")
+        {
+            jobDict = fields["job"].ToObject<Dictionary<string,string>>();
+        }
+        return jobDict;
+    }
+
     static void Main()
     {
         RunAsync().GetAwaiter().GetResult();
@@ -74,6 +88,10 @@ class main
             while(token is not null && option != "2")
             {
                 option = display.JobScreen(user.username);
+                if(option == "1")
+                {
+                    var jobDict = await GetJobAsync();
+                }
             }
             option = display.WelcomeScreen();
         }
