@@ -92,4 +92,11 @@ class Display
             $"{job.id}");
         Console.WriteLine("Solving...\n");
     }
+
+    public void SolveScreen(string result)
+    {
+        Console.WriteLine(result);
+        Console.WriteLine("\nEnter anything to continue:");
+        Console.ReadLine();
+    }
 }

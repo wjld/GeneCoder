@@ -41,6 +41,17 @@ class main
         return jobDict;
     }
 
+    static async Task<string> SendResponseAsync(Job job)
+    { 
+        HttpResponseMessage response = await client.PostAsJsonAsync(
+                    $"api/dna/jobs/{job.urlParameters}", job.answer);
+                response.EnsureSuccessStatusCode();
+
+        var fields = await response.Content.
+                ReadAsAsync<Dictionary<string,string>>();
+        return fields["code"];
+    }
+
     static void Main()
     {
         RunAsync().GetAwaiter().GetResult();
@@ -95,6 +106,7 @@ class main
                     {
                         Job job = new Job(jobDict);
                         display.JobDetails(job);
+                        display.SolveScreen(await SendResponseAsync(job));
                     }
                 }
             }
