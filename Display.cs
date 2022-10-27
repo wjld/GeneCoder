@@ -69,4 +69,19 @@ class Display
         Console.WriteLine("Enter anything to continue:");
         Console.ReadLine();
     }
+
+    public string JobScreen(string username)
+    {
+        string option = "";
+        while(!valid2.Contains(option))
+        {
+            Console.Clear();
+            Console.WriteLine($"Welcome, {username}!\n");
+            Console.WriteLine("Enter a number to select an option:");
+            Console.WriteLine("1 - Request a job");
+            Console.WriteLine("2 - Back to menu\n");
+            option = Console.ReadLine();
+        }
+        return option;
+    }
 }

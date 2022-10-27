@@ -69,6 +69,12 @@ class main
                 client.DefaultRequestHeaders.Authorization = 
                     new AuthenticationHeaderValue(token);
             }
+
+            option = "";
+            while(token is not null && option != "2")
+            {
+                option = display.JobScreen(user.username);
+            }
             option = display.WelcomeScreen();
         }
         Console.Clear();
