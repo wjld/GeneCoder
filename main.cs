@@ -108,6 +108,17 @@ class main
                         display.JobDetails(job);
                         display.SolveScreen(await SendResponseAsync(job));
                     }
+                    else
+                    {
+                        option = display.Timeout(user.username);
+                        if(option == "1")
+                        {
+                            token = await RequestTokenAsync(user);
+                            display.ConfirmLogin(token);
+                            client.DefaultRequestHeaders.Authorization = 
+                                new AuthenticationHeaderValue(token);
+                        }
+                    }
                 }
             }
             option = display.WelcomeScreen();
